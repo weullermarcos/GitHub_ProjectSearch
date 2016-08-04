@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:GitHubProject"
+             x:Class="GitHubProject.MainPage"
+             BackgroundColor="White">
+  
+  <Grid Padding="10,30,10,0">
+    
+    <Grid.RowDefinitions>
+      <RowDefinition Height="2*"/>
+      <RowDefinition Height="2*"/>
+      <RowDefinition Height="6*"/>
+    </Grid.RowDefinitions>
+  
+    <!--Imagem-->
+    <Image Grid.Row="0"
+           Source="Github.jpg"
+           HorizontalOptions="Center"
+           WidthRequest="200"
+           HeightRequest="200"/> 
+    
+    <StackLayout Grid.Row="1"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 Spacing="20">
+      
+      <Label Text="Buscador de Projetos - GitHub" 
+             HorizontalOptions="Center"
+             TextColor="Black"
+             FontSize="20"
+             FontAttributes="Bold"/>
+      
+      <!--Barra de busca-->
+      <SearchBar x:Name="mySearchBar" 
+                 Placeholder="Nome do Usuário" 
+                 CancelButtonColor="Red"
+                 SearchButtonPressed="mySearchBar_SearchButtonPressed"
+                 TextChanged="MySearchBar_TextChanged"/>
+  
+    </StackLayout>
+    
+    <!--Pesquisando-->
+    <StackLayout Grid.Row="2" 
+                 x:Name="searchStackLayout"
+                 IsVisible="False"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center"
+                 Spacing="30">
+      
+        <ActivityIndicator Color="Red"
+                           IsRunning="True"
+                           HorizontalOptions="FillAndExpand"/>
+      
+      <Label Text="Pesquisando..."
+             TextColor="Black"
+             FontSize="20"
+             FontAttributes="Bold"/>
+    
+    </StackLayout>
+    
+    <!--Lista de Projetos-->
+    <StackLayout Grid.Row="2"
+                 x:Name="projectsStackLayout"
+                 IsVisible="False"
+                 Spacing="20"
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="FillAndExpand">
+
+      <Label Text="Projetos encontrados: "
+             TextColor="Black"
+             FontSize="20"
+             FontAttributes="Bold"
+             HorizontalOptions="Start"/>
+      
+      <!--Lista de projetos-->
+      <ListView x:Name="projectListView"
+                VerticalOptions="FillAndExpand">
+      
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            
+            <Label Text="{Binding}" TextColor="Black"/>
+            
+            <!--<StackLayout BackgroundColor="#EEE"
+                         Orientation="Horizontal">
+
+              --><!--Cor--><!--
+              <BoxView Color="{Binding FavoriteColor}"/>
+                           
+              <StackLayout Orientation="Vertical">
+
+                <Label Text="{Binding Birthday}" TextColor="Blue"/>
+              </StackLayout>
+              
+            </StackLayout>-->
+            
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+      
+    
+    </StackLayout>
+    
+
+  </Grid>
+
+
+</ContentPage>
